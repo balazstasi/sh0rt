@@ -24,10 +24,12 @@ const Content = () => {
 
 const useStyles = createStyles((theme) => ({
   container: {
-    marginTop: 24,
-    marginBottom: 24,
-    minWidth: "100%",
+    marginTop: 16,
+    marginBottom: 16,
+    minWidth: "100vw",
     minHeight: "100vh",
+    maxWidth: "100%",
+    overflowX: "hidden",
     background: theme.colors.brand[1],
   },
 }));
