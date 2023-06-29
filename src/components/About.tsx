@@ -59,13 +59,19 @@ const About = () => {
 
 const useStyle = createStyles((theme) => ({
   container: {
+    alignSelf: "center",
+    alignContent: "center",
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    padding: 0,
     marginTop: 16,
-    marginBottom: 16,
-    minWidth: "100vw",
-    minHeight: "100vh",
+    minWidth: "100%",
     maxWidth: "100%",
     overflowX: "hidden",
     background: theme.colors.brand[1],
+    marginBottom: 1000,
   },
 
   title: {

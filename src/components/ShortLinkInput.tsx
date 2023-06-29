@@ -1,4 +1,4 @@
-import { Container, Button, TextInput, createStyles } from "@mantine/core";
+import { Container, Button, TextInput, useMantineTheme, MantineTheme, Text } from "@mantine/core";
 import { useState } from "react";
 import { ShortLink } from "../constants";
 import { useLocalDBContext } from "../state/hooks/useLocalDB";
@@ -6,7 +6,7 @@ import { useBlinkURL } from "../utils/hooks/useBlinkURL";
 import URL_UTILS from "../utils";
 
 const UrlInput = () => {
-  const { classes } = useStyles();
+  const theme = useMantineTheme();
   const { addShortLink, getShortLinkBy } = useLocalDBContext();
 
   const [url, setUrl] = useState<string>("");
@@ -57,13 +57,34 @@ const UrlInput = () => {
   };
 
   return (
-    <Container fluid px={"8px"} align={"center"} id={"shorten-url-input"}>
+    <Container
+      align="center"
+      id="shorten-url-input"
+      fluid
+      alignSelf="center"
+      sx={{
+        maxWidth: "80%",
+        minWidth: "80%",
+        marginBottom: 64,
+      }}
+    >
+      <Text
+        sx={{ textAlign: "left" }}
+        color={theme.colors.brand[0]}
+        weight={300}
+        size={12}
+        py={1}
+        mb={8}
+        mt={16}
+      >
+        .sh0/rten your links here!
+      </Text>
       <TextInput
         onSubmit={handleSubmit}
         onChange={handleChange}
         withAsterisk={false}
         value={url}
-        autoFocus
+        autoFocus={false}
         placeholder="Paste a link here..."
         variant="filled"
         radius={0}
@@ -71,13 +92,8 @@ const UrlInput = () => {
         required
         rightSectionWidth={120}
         id="url-input"
-        style={{
-          borderRadius: 0,
-          color: "white",
-          borderColor: "white",
-          border: 1,
-          borderWidth: 2,
-        }}
+        color={theme.colors.brand[0]}
+        border={1}
         rightSection={
           <Button
             id="url-input-button"
@@ -90,7 +106,8 @@ const UrlInput = () => {
             size="md"
             radius="md"
             color="white"
-            sx={{ marginRight: 16, border: 1 }}
+            mr={0}
+            border={1}
             tabIndex={-1}
             type="submit"
           >
@@ -106,20 +123,8 @@ const UrlInput = () => {
           }
         }}
         autoComplete="off"
-        styles={(theme: { colors: { brand: any[] }; fontFamily: any }) => ({
+        styles={(theme: MantineTheme) => ({
           input: {
-            // chrome autofill styles
-            "&:-webkit-autofill": {
-              WebkitBoxShadow: `0 0 0 30px ${theme.colors.brand[1]} inset !important`,
-              WebkitTextFillColor: theme.colors.brand[0],
-              backgroundColor: theme.colors.brand[1],
-            },
-            "&:-webkit-autofill::first-line": {
-              fontFamily: theme.fontFamily,
-            },
-            "&:-webkit-autofill::first-letter": {
-              fontFamily: theme.fontFamily,
-            },
             "&:-webkit-autofill::placeholder": {
               color: theme.colors.brand[0],
             },
@@ -141,9 +146,5 @@ const UrlInput = () => {
     </Container>
   );
 };
-
-const useStyles = createStyles((theme) => ({
-  input: {},
-}));
 
 export default UrlInput;

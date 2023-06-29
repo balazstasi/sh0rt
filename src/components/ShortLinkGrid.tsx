@@ -11,7 +11,7 @@ const ShortenedUrlGrid = () => {
   const shortLinksArray = useMemo(() => Object.entries(shortLinks), [shortLinks]);
 
   return (
-    <Container fluid px="64px" align="center">
+    <Container align="center" mt={0} sx={classes.container}>
       <Flex sx={classes.flexWrap}>
         {shortLinksArray.map((shortLinkIdTuple: [string, ShortLink]) => {
           const [, shortLinkData] = shortLinkIdTuple;
@@ -28,6 +28,11 @@ const ShortenedUrlGrid = () => {
 };
 
 const useStyles = createStyles((theme) => ({
+  container: {
+    background: theme.colors.brand[1],
+    maxWidth: "80%",
+    minWidth: "80%",
+  },
   flexWrap: {
     flexWrap: "wrap",
   },
@@ -39,9 +44,6 @@ const useStyles = createStyles((theme) => ({
       width: "50%",
     },
     "@media (min-width: 1024px)": {
-      width: "33%",
-    },
-    "@media (min-width: 1440px)": {
       width: "25%",
     },
   },

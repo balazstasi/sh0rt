@@ -1,8 +1,7 @@
 const URL_UTILS = {
   navigateTo: (url: string) => {
     if (url) {
-      const win = window.open(url, "_blank");
-      win && win.focus();
+      window.location.replace(url);
     }
   },
 
