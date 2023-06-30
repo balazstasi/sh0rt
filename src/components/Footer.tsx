@@ -21,14 +21,14 @@ const Footer = () => {
     <Container sx={classes.footer} id="footer">
       <Divider size={1} mb={16} />
 
-      <Grid justify="space-around">
+      <Grid px={16}>
         <Grid.Col xs={12} sm={8} md={8} lg={8}>
-          <Text size="xs" weight={700} color="white" mb="10px">
+          <Text size="xs" weight={700} color="white" mb={10}>
             --- URL Shortener ---
           </Text>
 
           <Text color="white" mb="5px">
-            made for an interview, really simple, made in a day as discussed. :) <br /> Hope you like it!
+            Made for an interview, really simple, made in a day as discussed. :) <br /> Hope you like it!
           </Text>
         </Grid.Col>
 
@@ -62,9 +62,15 @@ const Footer = () => {
 const useStyles = createStyles((theme) => ({
   footer: {
     backgroundColor: theme.colors.brand[1],
-    minWidth: "100%",
-    marginBottom: "20vh",
+    clear: "both",
+    width: "100vw",
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
+
   footerCard: {
     display: "flex",
     flexDirection: "column",

@@ -1,5 +1,5 @@
 import Content from "./views/Content";
-import { Footer, MantineProvider } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import { TypographyStylesProvider } from "@mantine/core";
 import { RandomWordProvider } from "./utils/hooks/useRandomWord";
 import { LocalDBProvider } from "./state/hooks/useLocalDB";
@@ -23,8 +23,6 @@ function App() {
         <RandomWordProvider limit={100}>
           <LocalDBProvider>
             <Content />
-
-            <Footer />
           </LocalDBProvider>
         </RandomWordProvider>
       </TypographyStylesProvider>
