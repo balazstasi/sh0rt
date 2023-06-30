@@ -36,6 +36,11 @@ const ShortLinkCard = ({ id, url, shortLink, createdAt }: ShortLinkCardProps) =>
       bg={theme.colors.brand[0]}
       className="card"
       id={`url-card-${new URL(URL_UTILS.makeProper(url)).href}`}
+      sx={{
+        // fade on remove confirmation
+        opacity: confirmDelete ? 0.8 : 1,
+        transition: "all 200ms ease-in-out",
+      }}
     >
       <Card.Section p={16}>
         <Flex

@@ -1,9 +1,14 @@
 import { Container, Button, TextInput, useMantineTheme, MantineTheme, Text } from "@mantine/core";
-import { useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import { ShortLink } from "../constants";
 import { useLocalDBContext } from "../state/hooks/useLocalDB";
 import { useBlinkURL } from "../utils/hooks/useBlinkURL";
 import URL_UTILS from "../utils";
+
+const ERROR_MESSAGES = {
+  INVALID_URL: "Invalid URL",
+  URL_ALREADY_EXISTS: "URL already exists, check the highlighted card below!",
+};
 
 const UrlInput = () => {
   const theme = useMantineTheme();
@@ -28,7 +33,7 @@ const UrlInput = () => {
   const handleSubmit = async () => {
     //-> Invalid URL
     if (!isValidURL(url)) {
-      setUrl("Invalid URL");
+      setUrl(ERROR_MESSAGES["INVALID_URL"]);
       setTimeout(() => {
         setUrl("");
       }, 2000);
@@ -37,7 +42,7 @@ const UrlInput = () => {
 
     //-> Already existing URL -> blink the card
     if (getShortLinkBy("url", new URL(URL_UTILS.makeProper(url)).href)) {
-      setUrl("URL already exists, check the highlighted card below!");
+      setUrl(ERROR_MESSAGES["URL_ALREADY_EXISTS"]);
       blink(new URL(URL_UTILS.makeProper(url)).href);
       return;
     }
@@ -55,6 +60,11 @@ const UrlInput = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(event.target.value);
   };
+
+  const hasError = useMemo(
+    () => url !== ERROR_MESSAGES.INVALID_URL && url !== ERROR_MESSAGES.URL_ALREADY_EXISTS,
+    [url]
+  );
 
   return (
     <Container
@@ -81,7 +91,7 @@ const UrlInput = () => {
       </Text>
       <TextInput
         onSubmit={handleSubmit}
-        onChange={handleChange}
+        onChange={hasError ? (props: ChangeEvent<HTMLInputElement>) => handleChange(props) : null}
         withAsterisk={false}
         value={url}
         autoFocus={false}
@@ -125,6 +135,13 @@ const UrlInput = () => {
         autoComplete="off"
         styles={(theme: MantineTheme) => ({
           input: {
+            select: hasError ? "none" : "auto",
+            caretColor: hasError ? theme.colors.brand[0] : "transparent",
+
+            // animations
+            transition: "all 100ms ease-in-out",
+            transitionProperty: "border, box-shadow",
+
             "&:-webkit-autofill::placeholder": {
               color: theme.colors.brand[0],
             },
