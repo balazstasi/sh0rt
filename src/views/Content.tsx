@@ -37,10 +37,6 @@ const Content = () => {
     });
   }, [setShowFooter, theme.spacing.xl]);
 
-  useEffect(() => {
-    console.log(showFooterDebounced);
-  }, [showFooterDebounced]);
-
   const redirect = useCallback(() => {
     const toRedirect = getShortLinkBy("shortLink", window.location.href);
     if (toRedirect != null) {

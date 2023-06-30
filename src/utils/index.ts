@@ -10,12 +10,10 @@ const URL_UTILS = {
       (async () => {
         try {
           await navigator.clipboard.writeText(text).catch((err) => {
-            console.log(err);
-            throw new Error("Error while copying to clipboard");
+            console.error(err);
           });
         } catch (err) {
-          console.log(err);
-          throw new Error("Error while copying to clipboard");
+          console.error(err);
         }
       })();
   },

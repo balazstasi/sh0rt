@@ -19,7 +19,6 @@ export const useBlinkURL = (id: string, callback: () => void) => {
     setTimeout(() => {
       if (!urlRef) return;
       urlRef.style.border = oldBorder as string;
-      console.log("🚀 ~ file: useBlinkURL.tsx:23 ~ setTimeout ~ oldBorder:", oldBorder);
       callback();
     }, 2000);
   };

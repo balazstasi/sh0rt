@@ -71,7 +71,6 @@ const UrlInput = () => {
       align="center"
       id="shorten-url-input"
       fluid
-      alignSelf="center"
       sx={{
         maxWidth: "80%",
         minWidth: "80%",
