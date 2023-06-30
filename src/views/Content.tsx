@@ -15,7 +15,7 @@ import {
 } from "@mantine/core";
 import URL_UTILS from "../utils";
 import { useCallback, useEffect, useState } from "react";
-import Logo from "../images/logos/black_transparent.png";
+import Logo from "../assets/logo.png";
 import { Image } from "@mantine/core";
 import Footer from "../components/Footer";
 import { useDebouncedValue } from "@mantine/hooks";

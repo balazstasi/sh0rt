@@ -1,15 +1,7 @@
-import {
-  Container,
-  Text,
-  Button,
-  Image,
-  useMantineColorScheme,
-  useMantineTheme,
-  createStyles,
-} from "@mantine/core";
+import { Container, Text, Button, Image, useMantineTheme, createStyles } from "@mantine/core";
 import { MdOutlineArrowDownward } from "react-icons/md";
 import { Link } from "react-scroll";
-import Logo from "../Images/logos/black_transparent.png";
+import Logo from "../assets/logo.png";
 
 const About = () => {
   const theme = useMantineTheme();
@@ -77,14 +69,12 @@ const useStyle = createStyles((theme) => ({
   title: {
     textAlign: "center",
     margin: "auto",
-    fontFamily: "Archivo Narrow, sans-serif",
   },
 
   desc: {
     color: "white",
     textAlign: "center",
     margin: "auto",
-    fontFamily: "Archivo Narrow, sans-serif",
   },
 }));
 
